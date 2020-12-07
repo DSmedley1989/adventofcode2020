@@ -26,7 +26,10 @@ with open('./data/day_six_part_one.txt', 'r') as file:
 def group_answers(group_answers_raw):
     results = {}
 
-    for answers in group_answers.split('\n') if answers != '':
+    for answers in group_answers_raw.split('\n'):
+        if answers == '':
+            continue
+
         for answer in answers.strip():
             previous_result = results.get(answer) or 0
             results[answer] = previous_result + 1
@@ -49,3 +52,10 @@ if __name__ == '__main__':
         exit()
 
     problem_answers = parse_input(problem_input)
+
+    problem_result = 0
+
+    for answers in problem_answers:
+        problem_result += len(answers)
+
+    print(problem_result)
